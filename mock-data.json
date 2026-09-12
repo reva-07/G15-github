@@ -1,0 +1,20 @@
+[
+  {
+    "id": "doc-1",
+    "title": "Semester Project Notes",
+    "content": "<h2>Semester Project Notes</h2><p>Ideas and progress tracking for the CSE project.</p>",
+    "updatedAt": "2026-09-04T10:00:00.000Z"
+  },
+  {
+    "id": "doc-2",
+    "title": "Evaluation-I Report Draft",
+    "content": "<h2>Evaluation-I Report</h2><p>Draft notes for the first evaluation submission.</p>",
+    "updatedAt": "2026-09-03T15:30:00.000Z"
+  },
+  {
+    "id": "doc-3",
+    "title": "Viva Question Bank",
+    "content": "<h2>Viva Questions</h2><ul><li>What is JSX?</li><li>What is useState?</li></ul>",
+    "updatedAt": "2026-09-01T09:00:00.000Z"
+  }
+]
