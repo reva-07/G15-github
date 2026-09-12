@@ -205,3 +205,87 @@ body {
     font-size: 24px;
   }
 }
+/* =========================
+   Navbar Logout
+========================= */
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logout-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0b3d91;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.logout-btn:hover {
+  background-color: #062b66;
+}
+
+/* =========================
+   404 Page
+========================= */
+
+.not-found-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.not-found-page h1 {
+  font-size: 80px;
+  color: #0b3d91;
+  margin-bottom: 10px;
+}
+
+.not-found-page h2 {
+  margin-bottom: 10px;
+}
+
+.not-found-page p {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.back-home-btn {
+  padding: 11px 20px;
+  background-color: #0b3d91;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.back-home-btn:hover {
+  background-color: #062b66;
+}
+
+/* =========================
+   Mobile Navbar
+========================= */
+
+@media (max-width: 600px) {
+
+  .navbar-right {
+    gap: 8px;
+  }
+
+  .navbar-right span {
+    font-size: 12px;
+  }
+
+  .logout-btn {
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+}

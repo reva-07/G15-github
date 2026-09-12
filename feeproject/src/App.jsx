@@ -1,41 +1,72 @@
-import { useState } from "react";
-import Navbar from "./Components/Navbar";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+
 import Login from "./Pages/Login";
+import Dashboard from "./Pages/Dashboard";
+import NotFound from "./Pages/NotFound";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("isLoggedIn") === "true"
-  );
-
-  const handleLoginSuccess = () => {
-    setIsLoggedIn(true);
-  };
-
-  if (!isLoggedIn) {
-    return <Login onLoginSuccess={handleLoginSuccess} />;
-  }
-
   return (
-    <div className="app">
-      <Navbar />
+    <BrowserRouter>
 
-      <main className="main-content">
-        <h1>Welcome to Google Docs Lite</h1>
+      <Routes>
 
-        <p>You are successfully logged in.</p>
+        {/* Login */}
+        <Route
+          path="/login"
+          element={<Login />}
+        />
 
-        <button
-          className="new-document-btn"
-          onClick={() => {
-            localStorage.removeItem("isLoggedIn");
-            localStorage.removeItem("userEmail");
-            setIsLoggedIn(false);
-          }}
-        >
-          Logout
-        </button>
-      </main>
-    </div>
+        {/* Dashboard - Protected */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Document - Dynamic + Protected */}
+        <Route
+          path="/document/:id"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* 404 */}
+        <Route
+          path="/404"
+          element={<NotFound />}
+        />
+
+        {/* Unknown URL */}
+        <Route
+          path="*"
+          element={
+            <Navigate to="/404" replace />
+          }
+        />
+
+        {/* Default */}
+        <Route
+          path="/"
+          element={
+            <Navigate to="/dashboard" replace />
+          }
+        />
+
+      </Routes>
+
+    </BrowserRouter>
   );
 }
 

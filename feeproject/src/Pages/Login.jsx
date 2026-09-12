@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Login({ onLoginSuccess }) {
+function Login() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -28,12 +31,13 @@ function Login({ onLoginSuccess }) {
     localStorage.setItem("isLoggedIn", "true");
     localStorage.setItem("userEmail", email);
 
-    onLoginSuccess();
+    navigate("/dashboard");
   };
 
   return (
     <div className="login-page">
       <div className="login-card">
+
         <h1>Google Docs Lite</h1>
 
         <p className="login-subtitle">
@@ -41,6 +45,7 @@ function Login({ onLoginSuccess }) {
         </p>
 
         <form onSubmit={handleLogin}>
+
           <div className="form-group">
             <label htmlFor="email">
               Email or Username
@@ -51,7 +56,9 @@ function Login({ onLoginSuccess }) {
               type="text"
               placeholder="Enter your email or username"
               value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              onChange={(event) =>
+                setEmail(event.target.value)
+              }
             />
           </div>
 
@@ -65,7 +72,9 @@ function Login({ onLoginSuccess }) {
               type="password"
               placeholder="Enter your password"
               value={password}
-              onChange={(event) => setPassword(event.target.value)}
+              onChange={(event) =>
+                setPassword(event.target.value)
+              }
             />
           </div>
 
@@ -75,9 +84,13 @@ function Login({ onLoginSuccess }) {
             </p>
           )}
 
-          <button type="submit" className="login-btn">
+          <button
+            type="submit"
+            className="login-btn"
+          >
             Login
           </button>
+
         </form>
       </div>
     </div>
