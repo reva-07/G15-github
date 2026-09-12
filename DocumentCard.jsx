@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { formatRelativeTime } from "../utils/documentUtils";
+import { formatRelativeTime } from "./documentUtils";
 
 export default function DocumentCard({ document, onDelete }) {
   const navigate = useNavigate();
