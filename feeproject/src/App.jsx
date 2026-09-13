@@ -10,10 +10,14 @@ import Dashboard from "./Pages/Dashboard";
 import NotFound from "./Pages/NotFound";
 import ProtectedRoute from "./Components/ProtectedRoute";
 
+import Editor from "./Editor";
+import { useDocuments } from "./useDocuments";
+
 function App() {
+  const documentsState = useDocuments();
+
   return (
     <BrowserRouter>
-
       <Routes>
 
         {/* Login */}
@@ -32,12 +36,12 @@ function App() {
           }
         />
 
-        {/* Document - Dynamic + Protected */}
+        {/* Document Editor - Protected */}
         <Route
           path="/document/:id"
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <Editor {...documentsState} />
             </ProtectedRoute>
           }
         />
@@ -51,21 +55,16 @@ function App() {
         {/* Unknown URL */}
         <Route
           path="*"
-          element={
-            <Navigate to="/404" replace />
-          }
+          element={<Navigate to="/404" replace />}
         />
 
         {/* Default */}
         <Route
           path="/"
-          element={
-            <Navigate to="/dashboard" replace />
-          }
+          element={<Navigate to="/dashboard" replace />}
         />
 
       </Routes>
-
     </BrowserRouter>
   );
 }
