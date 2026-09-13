@@ -1,7 +1,8 @@
-import Navbar from "../components/Navbar";
-import SearchBar from "../components/Searchbar";
-import DocumentCard from "../components/DocumentCard";
-import EmptyState from "../components/EmptyState";
+import Navbar from "./Navbar";
+import SearchBar from "./SearchBar";
+import DocumentCard from "./DocumentCard";
+import EmptyState from "./EmptyState";
+import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 
 // Notice: no useDocuments() call here. All document data arrives as props

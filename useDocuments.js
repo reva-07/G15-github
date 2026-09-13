@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { useLocalStorage } from "./useLocalStorage";
-import { createEmptyDocument } from "../utils/documentUtils";
+import { createEmptyDocument } from "./documentUtils";
 
 // This hook is called ONCE, at the top of App.jsx.
 // Dashboard and Editor both receive its return value as props,

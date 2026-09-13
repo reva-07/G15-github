@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getItem, setItem } from "../utils/Storage";
+import { getItem, setItem } from "./Storage";
 
 // A reusable custom hook: works just like useState,
 // but automatically keeps the value synced with localStorage.
