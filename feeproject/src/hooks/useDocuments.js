@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { useLocalStorage } from "./useLocalStorage";
-import { createEmptyDocument } from "./documentUtils";
+import { createEmptyDocument } from "../utils/documentUtils";
 
 // This hook is called ONCE, at the top of App.jsx.
 // Dashboard and Editor both receive its return value as props,
@@ -59,9 +59,9 @@ export function useDocuments() {
   );
 
   const getDocumentById = useCallback(
-  (id) => documents.find((doc) => String(doc.id) === String(id)),
-  [documents]
-);
+    (id) => documents.find((doc) => doc.id === id),
+    [documents]
+  );
 
   // Recomputed only when documents or searchTerm actually change.
   const filteredDocuments = useMemo(() => {

@@ -1,43 +1,36 @@
 import { useNavigate } from "react-router-dom";
 
-function Navbar() {
+export default function Navbar() {
   const navigate = useNavigate();
 
-  const userEmail =
-    localStorage.getItem("userEmail") || "User";
+  // 🔽 CHANGE 1: Get user info from localStorage
+  const authUser = JSON.parse(localStorage.getItem("authUser"));
+  const userName = authUser?.name || "Guest"; // fallback agar name na mile
 
-  const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("userEmail");
-
+  function handleLogout() {
+    localStorage.removeItem("authUser");
     navigate("/login");
-  };
+  }
 
   return (
-    <nav className="navbar">
-
-      <div className="navbar-left">
-        <h2>Google Docs Lite</h2>
+    <nav className="dash-navbar">
+      <div className="brand">
+        <div className="brand-mark">G</div>
+        <span className="brand-name">Google Docs Lite</span>
       </div>
-
       <div className="navbar-right">
+        {/* 🔽 CHANGE 2: Hard-coded "Bhumi" replaced with dynamic name */}
+        <span className="user-name">{userName}</span>
 
-        <span>
-          {userEmail}
-        </span>
+        {/* 🔽 CHANGE 3: Avatar letter also dynamic */}
+        <div className="avatar" aria-label={`${userName}'s profile`}>
+          {userName.charAt(0).toUpperCase()}
+        </div>
 
-        <button
-          className="logout-btn"
-          onClick={handleLogout}
-          aria-label="Logout"
-        >
+        <button className="btn-ghost" onClick={handleLogout} aria-label="Log out">
           Logout
         </button>
-
       </div>
-
     </nav>
   );
 }
-
-export default Navbar;

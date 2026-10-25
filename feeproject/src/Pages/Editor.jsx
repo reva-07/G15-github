@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Toolbar from "./Toolbar";
-import { countWordsAndChars } from "./documentUtils";
+import Toolbar from "../components/Toolbar";
+import { countWordsAndChars } from "../utils/documentUtils";
 
 export default function Editor({ getDocumentById, updateDocument }) {
   const { id } = useParams();
@@ -13,6 +13,9 @@ export default function Editor({ getDocumentById, updateDocument }) {
   const [content, setContent] = useState(currentDoc?.content || "");
   const [saveStatus, setSaveStatus] = useState("Saved");
 
+  // Runs once on mount: loads the saved HTML into the editable div,
+  // and focuses it so the user can start typing right away.
+  // This is a deliberate, meaningful use of useRef for direct DOM access.
   useEffect(() => {
     if (editorRef.current && currentDoc) {
       editorRef.current.innerHTML = currentDoc.content;
@@ -27,6 +30,7 @@ export default function Editor({ getDocumentById, updateDocument }) {
     setSaveStatus("Saved");
   }, [id, title, content, currentDoc, updateDocument]);
 
+  // Auto-save simulation: wait 1 second after the last change, then save.
   useEffect(() => {
     setSaveStatus("Saving...");
     const timer = setTimeout(saveDocument, 1000);
